@@ -66,9 +66,9 @@ Forget about the `new` operator, use `clone` to create instances:
 
 *The classic way:*
 
-    var donald = new TalkingDuck("Donald", "Duck");
-    donald.quack();// Donald Duck: Quack-quack! 
-                   // My name is Donald!
+    var daffy = new TalkingDuck("Daffy", "Duck");
+    daffy.quack();// Daffy Duck: Quack-quack! 
+                   // My name is Daffy!
 
 Forget about the `instanceof` operator, use JS native `.isPrototypeOf()` method instead:
 
@@ -76,4 +76,4 @@ Forget about the `instanceof` operator, use JS native `.isPrototypeOf()` method 
 
 *The classic way:*
 
-    donald instanceof Duck;// true
+    daffy instanceof Duck;// true
