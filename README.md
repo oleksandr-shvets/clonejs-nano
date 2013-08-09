@@ -4,7 +4,7 @@ clone.js Nano
 The true prototype-based nano-framework.
 This is all sources:
 ```php
-function clone(/** Object */proto, /** ObjectLiteralOnly */properdies){
+function clone(/** Object */proto, /** Object.literalOnly */properdies){
     properdies.__proto__ = proto;
     return properdies;
 }
