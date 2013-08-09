@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>clone.js Nano by quadroid</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/quadroid/nano-clone">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/quadroid/nano-clone/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/quadroid/nano-clone/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>clone.js Nano</h1>
+          <p>Тhree-line prototype-based nano-framework</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/quadroid">quadroid</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a name="clonejs-nano" class="anchor" href="#clonejs-nano"><span class="octicon octicon-link"></span></a>clone.js Nano</h1>
+
+<p>The true prototype-based nano-framework.
+This is all sources:</p>
+
+<div class="highlight"><pre><span class="k">function</span> <span class="nf">clone</span><span class="p">(</span><span class="sd">/** Object */</span><span class="nx">proto</span><span class="p">,</span> <span class="sd">/** ObjectLiteralOnly */</span><span class="nx">properdies</span><span class="p">){</span>
+    <span class="nx">properdies</span><span class="o">.</span><span class="nx">__proto__</span> <span class="o">=</span> <span class="nx">proto</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">properdies</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3>
+<a name="what-is-the-clone" class="anchor" href="#what-is-the-clone"><span class="octicon octicon-link"></span></a>What is the clone?</h3>
+
+<p><code>clone()</code> function produces new objects — clones.<br><strong>Clone — this is the lazy shallow copy</strong>, i.e., it is actually not a copy, it's just a reference to the object,
+with one difference: if you will add/replace any of its properties, it would not affect the cloned object (prototype).<br>
+All JavaScript objects are clones of <code>Object.prototype</code> (except itself and objects, created by <code>Object.create(null)</code>).</p>
+
+<h3>
+<a name="how-to-use" class="anchor" href="#how-to-use"><span class="octicon octicon-link"></span></a>How to use</h3>
+
+<p>Forget about classes.<br>
+Instead of creating class (function), create prototype (object):</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">duck$</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">quack</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span><span class="s2">" "</span><span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">+</span><span class="s2">": Quack-quack!"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+
+<p><em>The classic way:</em></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">Duck</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span><span class="p">){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">firstName</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">=</span> <span class="nx">lastName</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">Duck</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">quack</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span><span class="s2">" "</span><span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">+</span><span class="s2">": Quack-quack!"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Inheritance is simple (talkingDuck$ extends duck$):</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">talkingDuck$</span> <span class="o">=</span> <span class="nx">clone</span><span class="p">(</span><span class="nx">duck$</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">quack</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">duck$</span><span class="p">.</span><span class="nx">quack</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"My name is "</span><span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span><span class="s2">"!"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+<p><em>The classic way:</em></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">TalkingDuck</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+    <span class="nx">Duck</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">TalkingDuck</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Duck</span><span class="p">;</span>
+<span class="nx">TalkingDuck</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">TalkingDuck</span><span class="p">;</span>
+<span class="nx">TalkingDuck</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">quack</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">Duck</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">quack</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"My name is "</span><span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span><span class="s2">"!"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Forget about the <code>new</code> operator, use <code>clone</code> to create instances:</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">donald</span> <span class="o">=</span> <span class="nx">clone</span><span class="p">(</span><span class="nx">talkingDuck$</span><span class="p">,</span> <span class="p">{</span><span class="nx">firstName</span><span class="o">:</span> <span class="s2">"Donald"</span><span class="p">,</span> <span class="nx">lastName</span><span class="o">:</span> <span class="s2">"Duck"</span><span class="p">});</span>
+<span class="nx">donald</span><span class="p">.</span><span class="nx">quack</span><span class="p">();</span><span class="c1">// Donald Duck: Quack-quack! </span>
+               <span class="c1">// My name is Donald!</span>
+</pre></div>
+
+<p><em>The classic way:</em></p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">daffy</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TalkingDuck</span><span class="p">(</span><span class="s2">"Daffy"</span><span class="p">,</span> <span class="s2">"Duck"</span><span class="p">);</span>
+<span class="nx">daffy</span><span class="p">.</span><span class="nx">quack</span><span class="p">();</span><span class="c1">// Daffy Duck: Quack-quack! </span>
+               <span class="c1">// My name is Daffy!</span>
+</pre></div>
+
+<p>Forget about the <code>instanceof</code> operator, use JS native <code>.isPrototypeOf()</code> method instead:</p>
+
+<div class="highlight"><pre><span class="nx">duck$</span><span class="p">.</span><span class="nx">isPrototypeOf</span><span class="p">(</span><span class="nx">donald</span><span class="p">);</span><span class="c1">// true</span>
+</pre></div>
+
+<p><em>The classic way:</em></p>
+
+<div class="highlight"><pre><span class="nx">daffy</span> <span class="k">instanceof</span> <span class="nx">Duck</span><span class="p">;</span><span class="c1">// true</span>
+</pre></div>
+
+<hr><p>If you like this idea, plese look at <a href="http://www.clonejs.org">www.clonejs.org</a></p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
