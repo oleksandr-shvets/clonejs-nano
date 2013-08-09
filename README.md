@@ -1,14 +1,14 @@
-clone.js nano
+clone.js Nano
 =====
 
 The true prototype-based nano-framework.
 This is all sources:
-
-    function clone(/** Object */proto, /** ObjectLiteralOnly */properdies){
-        properdies.__proto__ = proto;
-        return properdies;
-    }
-    
+```php
+function clone(/** Object */proto, /** ObjectLiteralOnly */properdies){
+    properdies.__proto__ = proto;
+    return properdies;
+}
+```
 ### What is the clone?
 
 `clone()` function produces new objects — clones.  
@@ -20,60 +20,63 @@ All JavaScript objects are clones of `Object.prototype` (except itself and objec
 
 Forget about classes.    
 Instead of creating class (function), create prototype (object):
-
-    var duck$ = {
-        quack: function(){
-            console.log( this.firstName +" "+ this.lastName +": Quack-quack!");
-        }
-    };
-
-*The classic way:*
-
-    var Duck = function(firstName, lastName){
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-    Duck.prototype.quack = function(){
+```javascript
+var duck$ = {
+    quack: function(){
         console.log( this.firstName +" "+ this.lastName +": Quack-quack!");
     }
-
-Inheritance is simple (talkingDuck$ extends duck$):
-
-    var talkingDuck$ = clone(duck$, {
-        quack: function(){
-            duck$.quack.call(this);
-            console.log("My name is "+ this.name +"!");
-        }
-    });
-
+};
+```
 *The classic way:*
-
-    var TalkingDuck = function(name){
-        Duck.apply(this, arguments);
-    }
-    TalkingDuck.prototype = new Duck;
-    TalkingDuck.prototype.constructor = TalkingDuck;
-    TalkingDuck.prototype.quack = function(){
-        Duck.prototype.quack.call(this);
+```javascript
+var Duck = function(firstName, lastName){
+    this.firstName = firstName;
+    this.lastName = lastName;
+}
+Duck.prototype.quack = function(){
+    console.log( this.firstName +" "+ this.lastName +": Quack-quack!");
+}
+```
+Inheritance is simple (talkingDuck$ extends duck$):
+```javascript
+var talkingDuck$ = clone(duck$, {
+    quack: function(){
+        duck$.quack.call(this);
         console.log("My name is "+ this.name +"!");
     }
-
+});
+```
+*The classic way:*
+```javascript
+var TalkingDuck = function(name){
+    Duck.apply(this, arguments);
+}
+TalkingDuck.prototype = new Duck;
+TalkingDuck.prototype.constructor = TalkingDuck;
+TalkingDuck.prototype.quack = function(){
+    Duck.prototype.quack.call(this);
+    console.log("My name is "+ this.name +"!");
+}
+```
 Forget about the `new` operator, use `clone` to create instances:
-
-    var donald = clone(talkingDuck$, {firstName: "Donald", lastName: "Duck"});
-    donald.quack();// Donald Duck: Quack-quack! 
-                   // My name is Donald!
-
+```javascript
+var donald = clone(talkingDuck$, {firstName: "Donald", lastName: "Duck"});
+donald.quack();// Donald Duck: Quack-quack! 
+               // My name is Donald!
+```
 *The classic way:*
-
-    var daffy = new TalkingDuck("Daffy", "Duck");
-    daffy.quack();// Daffy Duck: Quack-quack! 
-                   // My name is Daffy!
-
+```javascript
+var daffy = new TalkingDuck("Daffy", "Duck");
+daffy.quack();// Daffy Duck: Quack-quack! 
+               // My name is Daffy!
+```
 Forget about the `instanceof` operator, use JS native `.isPrototypeOf()` method instead:
-
-    duck$.isPrototypeOf(donald);// true
-
+```javascript
+duck$.isPrototypeOf(donald);// true
+```
 *The classic way:*
-
-    daffy instanceof Duck;// true
+```javascript
+daffy instanceof Duck;// true
+```
+----
+If you like this idea, plese look at www.clonejs.org
