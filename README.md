@@ -28,34 +28,52 @@ Forget about classes.
 Instead of creating class (function), create prototype (object):
 ```javascript
 var duck$ = {// $ postfix means prototype: duck$ === Duck.prototype
+    name:  "Duck",// default name
+    color: "",
     quack: function(){
-        console.log( this.firstName +" "+ this.lastName +": Quack-quack!");
+        console.log( this.name +": Quack-quack!");
     }
 };
 ```
 *The classic way:*
 ```javascript
-var Duck = function(firstName, lastName){
-    this.firstName = firstName;
-    this.lastName = lastName;
+var Duck = function(name, color){
+    this.name  = name  || "Duck";
+    this.color = color || "";
 }
 Duck.prototype.quack = function(){
-    console.log( this.firstName +" "+ this.lastName +": Quack-quack!");
+    console.log(this.name +": Quack-quack!");
 }
 ```
 Inheritance is simple (talkingDuck prototype extends duck prototype):
 ```javascript
 var talkingDuck$ = clone(duck$, {
+    firstName: "",
+    lastName: "Duck",
+    
     quack: function(){
         duck$.quack.call(this);
         console.log("My name is "+ this.name +"!");
-    }
+    },
+    // backward compability with duck$ interface:
+    get name(){
+        return (this.firstName +" "+ this.lastName).trim();
+    },
+    set name(newName){
+        var names = newName.split(" ");
+        this.firstName = names[0];
+        if(names.length > 1){
+            this.lastName = names[1];
+        }
+    }    
 });
 ```
 *The classic way:*
 ```javascript
-var TalkingDuck = function(name){
-    Duck.apply(this, arguments);
+var TalkingDuck = function(firstName, lastName, color){
+    this.firstName = firstName;
+    this.lastName = lastName || "Duck";
+    this.color = color || "";
 }
 var TmpSafeProto = function(){};
 TmpSafeProto.prototype = Duck.prototype;
@@ -65,16 +83,29 @@ TalkingDuck.prototype.quack = function(){
     Duck.prototype.quack.call(this);
     console.log("My name is "+ this.name +"!");
 }
+// backward compability with Duck interface:
+Object.defineProperty(TalkingDuck.prototype, 'name', {
+    get: function(){
+        return (this.firstName +" "+ this.lastName).trim();
+    },
+    set: function(newName){
+        var names = newName.split(" ");
+        this.firstName = names[0];
+        if(names.length > 1){
+            this.lastName = names[1];
+        }
+    }
+});
 ```
 Forget about the `new` operator, use `clone` to create instances:
 ```javascript
-var donald = clone(talkingDuck$, {firstName: "Donald", lastName: "Duck"});
+var donald = clone(talkingDuck$, {firstName: "Donald", color: "White"});
 donald.quack();// Donald Duck: Quack-quack! 
                // My name is Donald!
 ```
 *The classic way:*
 ```javascript
-var daffy = new TalkingDuck("Daffy", "Duck");
+var daffy = new TalkingDuck("Daffy", undefined, "Black");
 daffy.quack();// Daffy Duck: Quack-quack! 
                // My name is Daffy!
 ```
