@@ -14,9 +14,11 @@ function clone(/** Object */proto, /** object.literalOnly! */properdies){
 It faster than any other framework, even VanillaJS! Yes, it creates class-objects faster than JS core creates class-functions!  
 See http://jsperf.com/clonejs-nano-vs-vanillajs
 
+<img src="http://habrastorage.org/storage2/a87/6e3/31d/a876e331d1f3caaa2d4002b958456d3a.png"/>
+
 ### What is the clone?
 
-`clone()` function produces new objects — clones.  
+`clone` function produces new objects — clones.  
 **Clone — this is the lazy shallow copy**, i.e., it is actually not a copy, it's just a reference to the object,
 with one difference: if you will add/replace any of its properties, it would not affect the cloned object (prototype).  
 All JavaScript objects are clones of `Object.prototype` (except itself and objects, created by `Object.create(null)`).
