@@ -11,7 +11,7 @@ function clone(/** Object */proto, /** object.literalOnly! */properdies){
 ```
 ### It really fast!
 
-It faster than VanillaJS! Yes, it creates class-objects faster than JS core creates class-functions!  
+It faster than any other framework, even VanillaJS! Yes, it creates class-objects faster than JS core creates class-functions!  
 See http://jsperf.com/clonejs-nano-vs-vanillajs
 
 ### What is the clone?
