@@ -4,4 +4,5 @@ function clone(/** Object */proto, /** object.literalOnly! */properdies){
     properdies.__proto__ = proto;
     return properdies;
 }
-/** @typedef {Object} object.literalOnly */
+/** @name object.literalOnly
+ * @define {Object} */
