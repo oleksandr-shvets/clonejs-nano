@@ -56,7 +56,9 @@ var talkingDuck$ = clone(duck$, {
 var TalkingDuck = function(name){
     Duck.apply(this, arguments);
 }
-TalkingDuck.prototype = new Duck;
+var TmpSafeProto = function(){};
+TmpSafeProto.prototype = Duck.prototype;
+TalkingDuck.prototype = new TmpSafeProto;
 TalkingDuck.prototype.constructor = TalkingDuck;
 TalkingDuck.prototype.quack = function(){
     Duck.prototype.quack.call(this);
