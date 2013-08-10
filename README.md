@@ -30,6 +30,7 @@ Instead of creating class (function), create prototype (object):
 var duck$ = {// $ postfix means prototype: duck$ === Duck.prototype
     name:  "Duck",// default name
     color: "",
+    canFly: true,
     quack: function(){
         console.log( this.name +": Quack-quack!");
     }
@@ -37,9 +38,10 @@ var duck$ = {// $ postfix means prototype: duck$ === Duck.prototype
 ```
 *The classic way:*
 ```javascript
-var Duck = function(name, color){
+var Duck = function(name, color, canFly){
     this.name  = name  || "Duck";
     this.color = color || "";
+    this.canFly= canFly === undefined ? true : canFly;  
 }
 Duck.prototype.quack = function(){
     console.log(this.name +": Quack-quack!");
@@ -70,10 +72,11 @@ var talkingDuck$ = clone(duck$, {
 ```
 *The classic way:*
 ```javascript
-var TalkingDuck = function(firstName, lastName, color){
+var TalkingDuck = function(firstName, lastName, color, canFly){
     this.firstName = firstName;
     this.lastName = lastName || "Duck";
     this.color = color || "";
+    this.canFly= canFly === undefined ? true : canFly;
 }
 var TmpSafeProto = function(){};
 TmpSafeProto.prototype = Duck.prototype;
@@ -99,13 +102,13 @@ Object.defineProperty(TalkingDuck.prototype, 'name', {
 ```
 Forget about the `new` operator, use `clone` to create instances:
 ```javascript
-var donald = clone(talkingDuck$, {firstName: "Donald", color: "White"});
+var donald = clone(talkingDuck$, {firstName: "Donald", color: "White", canFly: false});
 donald.quack();// Donald Duck: Quack-quack! 
                // My name is Donald!
 ```
 *The classic way:*
 ```javascript
-var daffy = new TalkingDuck("Daffy", undefined, "Black");
+var daffy = new TalkingDuck("Daffy", undefined, "Black", false);
 daffy.quack();// Daffy Duck: Quack-quack! 
                // My name is Daffy!
 ```
