@@ -27,7 +27,7 @@ All JavaScript objects are clones of `Object.prototype` (except itself and objec
 Forget about classes.    
 Instead of creating class (function), create prototype (object):
 ```javascript
-var duck$ = {
+var duck$ = {// $ postfix means prototype: duck$ === Duck.prototype
     quack: function(){
         console.log( this.firstName +" "+ this.lastName +": Quack-quack!");
     }
@@ -87,4 +87,4 @@ duck$.isPrototypeOf(donald);// true
 daffy instanceof Duck;// true
 ```
 ----
-If you like this idea, plese look at www.clonejs.org
+If you like this idea, plese look at www.github.com/quadroid/clonejs
