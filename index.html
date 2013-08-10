@@ -32,7 +32,7 @@
       <section>
         <div id="title">
           <h1>clone.js Nano</h1>
-          <p>Prototype-based nano-framework in three lines of code</p>
+          <p>The true prototype-based nano-framework in three lines of JavaScript</p>
           <hr>
           <span class="credits left">Project maintained by <a href="https://github.com/quadroid">quadroid</a></span>
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
@@ -49,6 +49,12 @@ This is all sources:</p>
     <span class="k">return</span> <span class="nx">properdies</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
+
+<h3>
+<a name="it-really-fast" class="anchor" href="#it-really-fast"><span class="octicon octicon-link"></span></a>It really fast!</h3>
+
+<p>It faster than VanillaJS! Yes, it creates class-objects faster than JS core creates class-functions!<br>
+See <a href="http://jsperf.com/clonejs-nano-vs-vanillajs">http://jsperf.com/clonejs-nano-vs-vanillajs</a></p>
 
 <h3>
 <a name="what-is-the-clone" class="anchor" href="#what-is-the-clone"><span class="octicon octicon-link"></span></a>What is the clone?</h3>
@@ -96,7 +102,9 @@ Instead of creating class (function), create prototype (object):</p>
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">TalkingDuck</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
     <span class="nx">Duck</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="nx">TalkingDuck</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Duck</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">TmpSafeProto</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){};</span>
+<span class="nx">TmpSafeProto</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">Duck</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+<span class="nx">TalkingDuck</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TmpSafeProto</span><span class="p">;</span>
 <span class="nx">TalkingDuck</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">TalkingDuck</span><span class="p">;</span>
 <span class="nx">TalkingDuck</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">quack</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
     <span class="nx">Duck</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">quack</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
