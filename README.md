@@ -43,7 +43,7 @@ Duck.prototype.quack = function(){
     console.log( this.firstName +" "+ this.lastName +": Quack-quack!");
 }
 ```
-Inheritance is simple (talkingDuck$ extends duck$):
+Inheritance is simple (talkingDuck prototype extends duck prototype):
 ```javascript
 var talkingDuck$ = clone(duck$, {
     quack: function(){
