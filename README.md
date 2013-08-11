@@ -20,16 +20,17 @@ See http://jsperf.com/clonejs-nano-vs-vanillajs
 `clone` function produces new objects — clones.  
 **Clone — this is the lazy shallow copy**, i.e., it is actually not a copy, it's just a reference to the object,
 with one difference: if you will add/replace any of its properties, it would not affect the cloned object (prototype).  
-All JavaScript objects are clones of `Object.prototype` (except itself and objects, created by `Object.create(null)`).  
+All JavaScript objects are clones of `Object.prototype` (except itself and objects, created by `Object.create(null)`). 
+
 [Read more⠙](http://www.2ality.com/2011/11/javascript-classes.html)
 
 ### How to use
 
-Forget about classes.    
+Forget about classes (function-constructors).    
 Instead of creating class (function), create prototype (object):
 ```javascript
 var duck$ = {// $ postfix means prototype: duck$ === Duck.prototype
-    name:  "Duck",// default name
+    name:  "Duck",
     color: "",
     canFly: true,
     quack: function(){
