@@ -1,7 +1,7 @@
 clone.js Nano
 =====
 
-The true prototype-based nano-framework.
+The [true prototype-based⠙](http://en.wikipedia.org/wiki/Prototype-based_programming) nano-framework.
 This is all sources:
 ```php
 function clone(/** Object */proto, /** object.literalOnly! */properdies){
@@ -20,7 +20,8 @@ See http://jsperf.com/clonejs-nano-vs-vanillajs
 `clone` function produces new objects — clones.  
 **Clone — this is the lazy shallow copy**, i.e., it is actually not a copy, it's just a reference to the object,
 with one difference: if you will add/replace any of its properties, it would not affect the cloned object (prototype).  
-All JavaScript objects are clones of `Object.prototype` (except itself and objects, created by `Object.create(null)`).
+All JavaScript objects are clones of `Object.prototype` (except itself and objects, created by `Object.create(null)`).  
+[Read more⠙](http://www.2ality.com/2011/11/javascript-classes.html)
 
 ### How to use
 
