@@ -122,5 +122,21 @@ duck$.isPrototypeOf(donald);// true
 ```javascript
 daffy instanceof Duck;// true
 ```
+
+#### How to initialize object?  
+1st way — use constructor:
+```javascript
+var obj$ = {
+    constructor: function(num){
+        this.num = num;
+    }
+    name: "Obj"
+}
+obj$.constructor.prototype = obj$;
+
+var obj = new obj$.constructor(777);
+```
+The second, more interesting way — [lazy initialization](//github.com/quadroid/clonejs#lazy-initialization)
+
 ----
 If you like this idea, plese look at www.github.com/quadroid/clonejs
