@@ -139,4 +139,4 @@ var obj = new obj$.constructor(777);
 The second, more interesting way — [lazy initialization](//github.com/quadroid/clonejs#lazy-initialization)
 
 ----
-If you like this idea, plese look at www.github.com/quadroid/clonejs
+If you like the idea, plese look at the extended version of this framework http://clonejs.org/symbols/clone.html
