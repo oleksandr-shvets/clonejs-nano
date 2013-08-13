@@ -123,15 +123,14 @@ duck$.isPrototypeOf(donald);// true
 daffy instanceof Duck;// true
 ```
 
-#### How to initialize object?  
+#### How to initialize object by calculated value?  
 1st way — use constructor:
 ```javascript
 var obj$ = {
-    base: 1000;
+    base: 1000,
     constructor: function(num){
         this.num = this.base + num;
     }
-    name: "Obj"
 }
 obj$.constructor.prototype = obj$;
 
