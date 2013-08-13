@@ -127,8 +127,9 @@ daffy instanceof Duck;// true
 1st way — use constructor:
 ```javascript
 var obj$ = {
+    base: 1000;
     constructor: function(num){
-        this.num = num;
+        this.num = this.base + num;
     }
     name: "Obj"
 }
