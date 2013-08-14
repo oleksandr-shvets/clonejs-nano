@@ -9,6 +9,10 @@ function clone(/** Object */proto, /** object.literalOnly! */properdies){
     return properdies;
 }
 ```
+The `__proto__` is a part of upcoming ECMA Script 6 standart. It should be relased by December 2013.  
+Currently, all major browsers have `__proto__` support, except Internet Explorer.  
+The `clone` function can be also implemented through function-constructors or `Object.create`.  
+
 ### It really fast!
 
 It faster than any other framework, even VanillaJS! Yes, it creates class-objects faster than JS core creates class-functions!  
@@ -59,7 +63,7 @@ var talkingDuck$ = clone(duck$, {
         duck$.quack.call(this);
         console.log("My name is "+ this.name +"!");
     },
-    // backward compability with duck$ interface:
+    // backward compatibility with duck$ interface:
     get name(){
         return (this.firstName +" "+ this.lastName).trim();
     },
@@ -88,7 +92,7 @@ TalkingDuck.prototype.quack = function(){
     Duck.prototype.quack.call(this);
     console.log("My name is "+ this.name +"!");
 }
-// backward compability with Duck interface:
+// backward compatibility with Duck interface:
 Object.defineProperty(TalkingDuck.prototype, 'name', {
     get: function(){
         return (this.firstName +" "+ this.lastName).trim();
