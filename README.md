@@ -4,9 +4,9 @@ clone.js Nano
 The [true prototype-based⠙](http://en.wikipedia.org/wiki/Prototype-based_programming) nano-framework.
 This is all sources:
 ```php
-function clone(/** Object */proto, /** object.literalOnly! */properties){
-    properties.__proto__ = proto;
-    return properties;
+function clone(/** Object */proto, /** object.literalOnly! */ownProperties){
+    ownProperties.__proto__ = proto;
+    return ownProperties;
 }
 ```
 The `__proto__` is a part of upcoming ECMA Script 6 standart. It should be relased by December 2013.  
