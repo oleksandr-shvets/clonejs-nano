@@ -4,9 +4,9 @@ clone.js Nano
 The [true prototype-based⠙](http://en.wikipedia.org/wiki/Prototype-based_programming) nano-framework.
 This is all sources:
 ```php
-function clone(/** Object */proto, /** object.literalOnly! */properdies){
-    properdies.__proto__ = proto;
-    return properdies;
+function clone(/** Object */proto, /** object.literalOnly! */properties){
+    properties.__proto__ = proto;
+    return properties;
 }
 ```
 The `__proto__` is a part of upcoming ECMA Script 6 standart. It should be relased by December 2013.  
@@ -143,4 +143,4 @@ var obj = new obj$.constructor(777);
 The second, more interesting way — [lazy initialization](//github.com/quadroid/clonejs#lazy-initialization)
 
 ----
-If you like the idea, plese look at the extended version of this framework www.clonejs.org
+If you like the idea, plese look at the extended version of this framework www.github.com/quadroid/clonejs
