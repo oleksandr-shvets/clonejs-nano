@@ -13,6 +13,23 @@ The `__proto__` is a part of [upcoming ECMA Script 6⠙](http://people.mozilla.o
 Currently, all major browsers have `__proto__` support, except Internet Explorer.  
 **This** `clone` **function can be also implemented through** `Object.create` **or function-constructors (JavaScript 1.0 / IE3.0)**.  
 
+#### Try the true prototype-based OOP
+
+In this framework you can easilly create and manipulate objects without constructors, instead of classic js way,
+where you should define a constructor for every object (that you want to use as prototype), even if you didn't need it.
+It's possible to build and maintain extremely **large numbers of "classes" with comparatively little code**.
+
+**It's trivial to create new "classes"** - just clone the object and change a couple of properties and voila... new "class".
+
+**It's really class-free**: `clone()` produces objects (prototypes), not function-constructors, unlike all other class-producing tools (`Ext.define`, `dojo.declare` etc).
+
+Read more:
+
+- [Advantages of prototype-based OOP⠙](http://programmers.stackexchange.com/questions/110936/what-are-the-advantages-of-prototype-based-oop-over-class-based-oop#answers-header)
+- [Myth: JavaScript needs classes⠙](http://www.2ality.com/2011/11/javascript-classes.html)
+- [Does JavaScript need classes? (robot translation, sorry)⠙](http://translate.google.com/translate?hl=&sl=ru&tl=en&u=http%3A%2F%2Fhabrahabr.ru%2Fpost%2F175029%2F)
+
+
 ### It really fast!
 
 It faster than any other framework, even VanillaJS! Yes, it creates class-objects faster than JS core creates class-functions!  
