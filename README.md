@@ -2,7 +2,7 @@ clone.js Nano
 =====
 
 The [true prototype-based⠙](http://en.wikipedia.org/wiki/Prototype-based_programming) nano-framework.
-This is all sources:
+This is the main function of the framework:
 ```php
 function clone(/** Object */proto, /** object.literalOnly! */ownProperties){
     ownProperties.__proto__ = proto;
