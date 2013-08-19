@@ -9,9 +9,9 @@ function clone(/** Object */proto, /** object.literalOnly! */ownProperties){
     return ownProperties;
 }
 ```
-The `__proto__` is a part of upcoming ECMA Script 6 standart. It should be relased by December 2013.  
+The `__proto__` is a part of [upcoming ECMA Script 6⠙](http://people.mozilla.org/~jorendorff/es6-draft.html#sec-B.2.2.1) standart. It should be [relased by December 2013⠙](http://ecma-international.org/memento/TC39-M.htm).  
 Currently, all major browsers have `__proto__` support, except Internet Explorer.  
-The `clone` function can be also implemented through function-constructors or `Object.create`.  
+**This** `clone` **function can be also implemented through** `Object.create` **or function-constructors (JavaScript 1.0 / IE3.0)**.  
 
 ### It really fast!
 
