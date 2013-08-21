@@ -103,9 +103,9 @@ var TalkingDuck = function(firstName, lastName, color, canFly){
     this.color = color || "";
     this.canFly= canFly === undefined ? true : canFly;
 }
-var TmpSafeProto = function(){};
-TmpSafeProto.prototype = Duck.prototype;
-TalkingDuck.prototype = new TmpSafeProto;
+var TalkingDuckPrototype = function(){};
+TalkingDuckPrototype.prototype = Duck.prototype;
+TalkingDuck.prototype = new TalkingDuckPrototype;
 TalkingDuck.prototype.constructor = TalkingDuck;
 TalkingDuck.prototype.quack = function(){
     Duck.prototype.quack.call(this);
