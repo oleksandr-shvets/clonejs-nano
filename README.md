@@ -146,6 +146,21 @@ duck$.isPrototypeOf(donald);// true
 daffy instanceof Duck;// true
 ```
 
+#### Why not Object.create?
+1) Because its second argument isn't usable:
+```javascript
+var talkingDuck$ = Object.create(duck$, {
+    firstName: {value:"", enumerable:true, writable:true},
+    lastName: {value:"Duck", enumerable:true, writable:true},
+
+    quack: {value: function(){
+        duck$.quack.call(this);
+        console.log("My name is "+ this.name +"!");
+    }}
+});
+```
+2) It's very slow.
+
 #### How to initialize object by calculated value?  
 1st way — use constructor:
 ```javascript
