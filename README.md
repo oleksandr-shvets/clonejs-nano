@@ -26,11 +26,17 @@ It's possible to build and maintain extremely **large numbers of "classes" with 
 Read more:
 
 - [Advantages of prototype-based OOP⠙](http://programmers.stackexchange.com/questions/110936/what-are-the-advantages-of-prototype-based-oop-over-class-based-oop#answers-header)
-- [Does JavaScript need classes? (in russian)⠙](http://habrahabr.ru/post/175029/) [(robot translation)](http://translate.google.com/translate?hl=&sl=ru&tl=en&u=http%3A%2F%2Fhabrahabr.ru%2Fpost%2F175029%2F)
+Sep 2011, Mike Anderson
+- [Does JavaScript need classes? (in russian)⠙](http://habrahabr.ru/post/175029/) [(robot translation)⠙](http://translate.google.com/translate?hl=&sl=ru&tl=en&u=http%3A%2F%2Fhabrahabr.ru%2Fpost%2F175029%2F)
+Jul 2013, Me (Alexander Shvets)
 - [Myth: JavaScript needs classes⠙](http://www.2ality.com/2011/11/javascript-classes.html)
+Mar 2012, Dr. Axel Rauschmayer
 - [JS Objects: De”construct”ion⠙](http://davidwalsh.name/javascript-objects-deconstruction)
+Apr 2013, Kyle Simpson
 - [Stop Using Constructor Functions In JavaScript⠙](http://ericleads.com/2012/09/stop-using-constructor-functions-in-javascript/)
+Sep 2012, Eric Elliott
 - [Constructors Are Bad For JavaScript⠙](http://tareksherif.ca/blog/2013/08/constructors-are-bad-for-javascript/)
+Aug 2013, Tarek Sherif
 
 ### It really fast!
 
