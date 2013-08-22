@@ -26,17 +26,17 @@ It's possible to build and maintain extremely **large numbers of "classes" with 
 Read more:
 
 - [Advantages of prototype-based OOP⠙](http://programmers.stackexchange.com/questions/110936/what-are-the-advantages-of-prototype-based-oop-over-class-based-oop#answers-header)
-Sep 2011, Mike Anderson
+by Mike Anderson
 - [Does JavaScript need classes? (in russian)⠙](http://habrahabr.ru/post/175029/) [(robot translation)⠙](http://translate.google.com/translate?hl=&sl=ru&tl=en&u=http%3A%2F%2Fhabrahabr.ru%2Fpost%2F175029%2F)
-Jul 2013, Me (Alexander Shvets)
+by Me (Alexander Shvets)
 - [Myth: JavaScript needs classes⠙](http://www.2ality.com/2011/11/javascript-classes.html)
-Mar 2012, Dr. Axel Rauschmayer
+by Dr. Axel Rauschmayer
 - [JS Objects: De”construct”ion⠙](http://davidwalsh.name/javascript-objects-deconstruction)
-Apr 2013, Kyle Simpson
+by Kyle Simpson
 - [Stop Using Constructor Functions In JavaScript⠙](http://ericleads.com/2012/09/stop-using-constructor-functions-in-javascript/)
-Sep 2012, Eric Elliott
+by Eric Elliott
 - [Constructors Are Bad For JavaScript⠙](http://tareksherif.ca/blog/2013/08/constructors-are-bad-for-javascript/)
-Aug 2013, Tarek Sherif
+by Tarek Sherif
 
 ### It really fast!
 
@@ -50,8 +50,6 @@ See http://jsperf.com/clonejs-nano-vs-vanillajs
 **Clone — this is the lazy shallow copy**, i.e., it is actually not a copy, it's just a reference to the object,
 with one difference: if you will add/replace any of its properties, it would not affect the cloned object (prototype).  
 All JavaScript objects are clones of `Object.prototype` (except itself and objects, created by `Object.create(null)`). 
-
-[Read more⠙](http://www.2ality.com/2011/11/javascript-classes.html)
 
 ### How to use
 
