@@ -30,11 +30,11 @@ by Mike Anderson
 - [Does JavaScript need classes? (in russian)⠙](http://habrahabr.ru/post/175029/) [(robot translation)⠙](http://translate.google.com/translate?hl=&sl=ru&tl=en&u=http%3A%2F%2Fhabrahabr.ru%2Fpost%2F175029%2F)
 by Me (Alexander Shvets)
 - [Myth: JavaScript needs classes⠙](http://www.2ality.com/2011/11/javascript-classes.html)
-by Dr. Axel Rauschmayer
+by [Dr. Axel Rauschmayer (University of Munich)⠙](http://rauschma.de)
 - [JS Objects: De”construct”ion⠙](http://davidwalsh.name/javascript-objects-deconstruction)
 by Kyle Simpson
 - [Stop Using Constructor Functions In JavaScript⠙](http://ericleads.com/2012/09/stop-using-constructor-functions-in-javascript/)
-by Eric Elliott
+by [Eric Elliott (Adobe)⠙](http://ericleads.com/about/)
 - [Constructors Are Bad For JavaScript⠙](http://tareksherif.ca/blog/2013/08/constructors-are-bad-for-javascript/)
 by Tarek Sherif
 
