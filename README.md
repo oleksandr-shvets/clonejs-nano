@@ -13,9 +13,9 @@ The `__proto__` is a part of [upcoming ECMA Script 6⠙](http://people.mozilla.o
 Currently, all major browsers have `__proto__` support, except Internet Explorer.  
 **This** `clone` **function can be also implemented through** `Object.create` **or function-constructors (JavaScript 1.0 / IE3.0)**.  
 
-#### Try the true prototype-based OOP
+### Try the true prototype-based OOP
 
-In this framework you can easilly create and manipulate objects without constructors, instead of classic js way,
+With this framework you can easilly create and manipulate objects without constructors, instead of classic js way,
 where you should define a constructor for every object (that you want to use as prototype), even if you didn't need it.
 It's possible to build and maintain extremely **large numbers of "classes" with comparatively little code**.
 
@@ -41,7 +41,7 @@ by Tarek Sherif
 ### It really fast!
 
 It faster than any other framework, even VanillaJS! Yes, it creates class-objects faster than JS core creates class-functions!  
-See http://jsperf.com/clonejs-nano-vs-vanillajs
+See http://jsperf.com/clonejs-nano-vs-vanillajs and http://jsperf.com/fw-class-creation
 [![CloneJS Nano vs VanillaJS](http://habrastorage.org/storage2/a87/6e3/31d/a876e331d1f3caaa2d4002b958456d3a.png)](http://jsperf.com/clonejs-nano-vs-vanillajs)
 
 ### What is the Clone?
