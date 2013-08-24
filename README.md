@@ -41,8 +41,8 @@ by Tarek Sherif
 ### It really fast!
 
 It faster than any other framework, even VanillaJS! Yes, it creates class-objects faster than JS core creates class-functions!  
-See http://jsperf.com/clonejs-nano-vs-vanillajs and http://jsperf.com/fw-class-creation
-[![CloneJS Nano vs VanillaJS](http://habrastorage.org/storage2/a87/6e3/31d/a876e331d1f3caaa2d4002b958456d3a.png)](http://jsperf.com/clonejs-nano-vs-vanillajs)
+See http://jsperf.com/clonejs-nano-vs-vanillajs and http://jsperf.com/fw-class-creation/2
+[![CloneJS Nano vs VanillaJS](http://quadroid.github.io/clonejs-nano/frameworks-class-creation-bench.png)](http://jsperf.com/fw-class-creation/2)
 
 ### What is the Clone?
 
