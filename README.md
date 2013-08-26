@@ -151,6 +151,7 @@ daffy instanceof Duck;// true
 ```
 
 #### Why not Object.create?
+
 1) Because its second argument isn't usable:
 ```javascript
 var talkingDuck$ = Object.create(duck$, {
@@ -164,6 +165,41 @@ var talkingDuck$ = Object.create(duck$, {
 });
 ```
 2) It's very slow.
+
+#### Object-oriented notation
+
+Create the root prototype for all your objects:
+```javascript
+var object$ = {
+    clone: function(ownProperties){
+        ownProperties.__proto__ = this;
+        return ownProperties;
+    }
+}
+```
+After that, you can clone it:
+```javascript
+var duck$ = object$.clone({
+    name: "Duck",
+    quack: function(){
+        console.log(this.name +": Quack-quack!");
+    }
+});
+
+var donald = duck$.clone({name: "Donald Duck"});
+```
+or copy it `clone` property to your prototype:
+```javascript
+var duck$ = {
+    clone: object$.clone,
+    name: "Duck",
+    quack: function(){
+        console.log(this.name +": Quack-quack!");
+    }
+};
+
+var donald = duck$.clone({name: "Donald Duck"});
+```
 
 #### How to initialize object by calculated value?  
 1st way — use constructor:
