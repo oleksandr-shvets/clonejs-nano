@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>clone.js Nano by quadroid</title>
+    <title>clone.js nano by quadroid</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -31,7 +31,7 @@
 
       <section>
         <div id="title">
-          <h1>clone.js Nano</h1>
+          <h1>clone.js nano</h1>
           <p>The true prototype-based nano-framework in three lines of JavaScript</p>
           <hr>
           <span class="credits left">Project maintained by <a href="https://github.com/quadroid">quadroid</a></span>
@@ -39,39 +39,76 @@
         </div>
 
         <h1>
-<a name="clonejs-nano" class="anchor" href="#clonejs-nano"><span class="octicon octicon-link"></span></a>clone.js Nano</h1>
+<a name="clonejs-nano" class="anchor" href="#clonejs-nano"><span class="octicon octicon-link"></span></a>clone.js nano</h1>
 
 <p>The <a href="http://en.wikipedia.org/wiki/Prototype-based_programming">true prototype-based⠙</a> nano-framework.
-This is all sources:</p>
+This is the main function of the framework:</p>
 
-<div class="highlight"><pre><span class="k">function</span> <span class="nf">clone</span><span class="p">(</span><span class="sd">/** Object */</span><span class="nx">proto</span><span class="p">,</span> <span class="sd">/** object.literalOnly! */</span><span class="nx">properdies</span><span class="p">){</span>
-    <span class="nx">properdies</span><span class="o">.</span><span class="nx">__proto__</span> <span class="o">=</span> <span class="nx">proto</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nx">properdies</span><span class="p">;</span>
+<div class="highlight"><pre><span class="k">function</span> <span class="nf">clone</span><span class="p">(</span><span class="sd">/** Object */</span><span class="nx">proto</span><span class="p">,</span> <span class="sd">/** object.literalOnly! */</span><span class="nx">ownProperties</span><span class="p">){</span>
+    <span class="nx">ownProperties</span><span class="o">.</span><span class="nx">__proto__</span> <span class="o">=</span> <span class="nx">proto</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">ownProperties</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 
+<p>The <code>__proto__</code> is a part of <a href="http://people.mozilla.org/%7Ejorendorff/es6-draft.html#sec-B.2.2.1">upcoming ECMA Script 6⠙</a> standart. It should be <a href="http://ecma-international.org/memento/TC39-M.htm">relased by December 2013⠙</a>.<br>
+Currently, all major browsers have <code>__proto__</code> support, except Internet Explorer.<br><strong>This</strong> <code>clone</code> <strong>function can be also implemented through</strong> <code>Object.create</code> <strong>or function-constructors (JavaScript 1.0 / IE3.0)</strong>.  </p>
+
 <h3>
+<a name="try-the-true-prototype-based-oop" class="anchor" href="#try-the-true-prototype-based-oop"><span class="octicon octicon-link"></span></a>Try the true prototype-based OOP</h3>
+
+<p>With this framework you can easilly create and manipulate objects without constructors, instead of classic js way,
+where you should define a constructor for every object (that you want to use as prototype), even if you didn't need it.
+It's possible to build and maintain extremely <strong>large numbers of "classes" with comparatively little code</strong>.</p>
+
+<p><strong>It's trivial to create new "classes"</strong> - just clone the object and change a couple of properties and voila... new "class".</p>
+
+<p><strong>It's really class-free</strong>: <code>clone()</code> produces objects (prototypes), not function-constructors, unlike all other class-producing tools (<code>Ext.define</code>, <code>dojo.declare</code> etc).</p>
+
+<p>Read more:</p>
+
+<ul>
+<li>
+<a href="http://programmers.stackexchange.com/questions/110936/what-are-the-advantages-of-prototype-based-oop-over-class-based-oop#answers-header">Advantages of prototype-based OOP⠙</a>
+by Mike Anderson</li>
+<li>
+<a href="http://habrahabr.ru/post/175029/">Does JavaScript need classes? (in russian)⠙</a> <a href="http://translate.google.com/translate?hl=&amp;sl=ru&amp;tl=en&amp;u=http%3A%2F%2Fhabrahabr.ru%2Fpost%2F175029%2F">(robot translation)⠙</a>
+by Me (Alexander Shvets)</li>
+<li>
+<a href="http://www.2ality.com/2011/11/javascript-classes.html">Myth: JavaScript needs classes⠙</a>
+by <a href="http://rauschma.de">Dr. Axel Rauschmayer (University of Munich)⠙</a>
+</li>
+<li>
+<a href="http://davidwalsh.name/javascript-objects-deconstruction">JS Objects: De”construct”ion⠙</a>
+by Kyle Simpson</li>
+<li>
+<a href="http://ericleads.com/2012/09/stop-using-constructor-functions-in-javascript/">Stop Using Constructor Functions In JavaScript⠙</a>
+by <a href="http://ericleads.com/about/">Eric Elliott (Adobe)⠙</a>
+</li>
+<li>
+<a href="http://tareksherif.ca/blog/2013/08/constructors-are-bad-for-javascript/">Constructors Are Bad For JavaScript⠙</a>
+by Tarek Sherif</li>
+</ul><h3>
 <a name="it-really-fast" class="anchor" href="#it-really-fast"><span class="octicon octicon-link"></span></a>It really fast!</h3>
 
 <p>It faster than any other framework, even VanillaJS! Yes, it creates class-objects faster than JS core creates class-functions!<br>
-See <a href="http://jsperf.com/clonejs-nano-vs-vanillajs">http://jsperf.com/clonejs-nano-vs-vanillajs</a>
-<a href="http://jsperf.com/clonejs-nano-vs-vanillajs"><img src="http://habrastorage.org/storage2/a87/6e3/31d/a876e331d1f3caaa2d4002b958456d3a.png" alt="CloneJS Nano vs VanillaJS"></a></p>
+See <a href="http://jsperf.com/fw-class-creation/3">http://jsperf.com/fw-class-creation/3</a> and <a href="http://jsperf.com/clonejs-nano-vs-vanillajs/5">http://jsperf.com/clonejs-nano-vs-vanillajs/5</a>
+<a href="http://jsperf.com/fw-class-creation/3"><img src="http://quadroid.github.io/clonejs-nano/frameworks-class-creation-bench.png" alt="CloneJS Nano vs VanillaJS"></a></p>
 
 <h3>
-<a name="what-is-the-clone" class="anchor" href="#what-is-the-clone"><span class="octicon octicon-link"></span></a>What is the clone?</h3>
+<a name="what-is-the-clone" class="anchor" href="#what-is-the-clone"><span class="octicon octicon-link"></span></a>What is the Clone?</h3>
 
-<p><code>clone</code> function produces new objects — clones.<br><strong>Clone — this is the lazy shallow copy</strong>, i.e., it is actually not a copy, it's just a reference to the object,
+<p><code>clone</code> function produces new objects — Clones.<br><strong>Clone — this is the lazy shallow copy</strong>, i.e., it is actually not a copy, it's just a reference to the object,
 with one difference: if you will add/replace any of its properties, it would not affect the cloned object (prototype).<br>
-All JavaScript objects are clones of <code>Object.prototype</code> (except itself and objects, created by <code>Object.create(null)</code>).<br><a href="http://www.2ality.com/2011/11/javascript-classes.html">Read more⠙</a></p>
+All JavaScript objects are clones of <code>Object.prototype</code> (except itself and objects, created by <code>Object.create(null)</code>). </p>
 
 <h3>
 <a name="how-to-use" class="anchor" href="#how-to-use"><span class="octicon octicon-link"></span></a>How to use</h3>
 
-<p>Forget about classes.<br>
-Instead of creating class (function), create prototype (object):</p>
+<p>Forget about classes (function-constructors).<br>
+Instead of <strong>creating class</strong> (function), create prototype (object):</p>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">duck$</span> <span class="o">=</span> <span class="p">{</span><span class="c1">// $ postfix means prototype: duck$ === Duck.prototype</span>
-    <span class="nx">name</span><span class="o">:</span>  <span class="s2">"Duck"</span><span class="p">,</span><span class="c1">// default name</span>
+    <span class="nx">name</span><span class="o">:</span>  <span class="s2">"Duck"</span><span class="p">,</span>
     <span class="nx">color</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
     <span class="nx">canFly</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="nx">quack</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
@@ -92,7 +129,7 @@ Instead of creating class (function), create prototype (object):</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>Inheritance is simple (talkingDuck prototype extends duck prototype):</p>
+<p><strong>Inheritance</strong> is simple (talkingDuck prototype extends duck prototype):</p>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">talkingDuck$</span> <span class="o">=</span> <span class="nx">clone</span><span class="p">(</span><span class="nx">duck$</span><span class="p">,</span> <span class="p">{</span>
     <span class="nx">firstName</span><span class="o">:</span> <span class="s2">""</span><span class="p">,</span>
@@ -102,7 +139,7 @@ Instead of creating class (function), create prototype (object):</p>
         <span class="nx">duck$</span><span class="p">.</span><span class="nx">quack</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"My name is "</span><span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span><span class="s2">"!"</span><span class="p">);</span>
     <span class="p">},</span>
-    <span class="c1">// backward compability with duck$ interface:</span>
+    <span class="c1">// backward compatibility with duck$ interface:</span>
     <span class="nx">get</span> <span class="nx">name</span><span class="p">(){</span>
         <span class="k">return</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span><span class="s2">" "</span><span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="p">).</span><span class="nx">trim</span><span class="p">();</span>
     <span class="p">},</span>
@@ -124,15 +161,15 @@ Instead of creating class (function), create prototype (object):</p>
     <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">color</span> <span class="o">||</span> <span class="s2">""</span><span class="p">;</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">canFly</span><span class="o">=</span> <span class="nx">canFly</span> <span class="o">===</span> <span class="kc">undefined</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="nx">canFly</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="kd">var</span> <span class="nx">TmpSafeProto</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){};</span>
-<span class="nx">TmpSafeProto</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">Duck</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
-<span class="nx">TalkingDuck</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TmpSafeProto</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">TalkingDuckPrototype</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){};</span>
+<span class="nx">TalkingDuckPrototype</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">Duck</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+<span class="nx">TalkingDuck</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TalkingDuckPrototype</span><span class="p">;</span>
 <span class="nx">TalkingDuck</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">TalkingDuck</span><span class="p">;</span>
 <span class="nx">TalkingDuck</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">quack</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
     <span class="nx">Duck</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">quack</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"My name is "</span><span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span><span class="s2">"!"</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="c1">// backward compability with Duck interface:</span>
+<span class="c1">// backward compatibility with Duck interface:</span>
 <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">TalkingDuck</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">,</span> <span class="p">{</span>
     <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
         <span class="k">return</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span><span class="s2">" "</span><span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span><span class="p">).</span><span class="nx">trim</span><span class="p">();</span>
@@ -147,7 +184,7 @@ Instead of creating class (function), create prototype (object):</p>
 <span class="p">});</span>
 </pre></div>
 
-<p>Forget about the <code>new</code> operator, use <code>clone</code> to create instances:</p>
+<p>Forget about <strong>the <code>new</code> operator</strong>, use <code>clone</code> to create instances:</p>
 
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">donald</span> <span class="o">=</span> <span class="nx">clone</span><span class="p">(</span><span class="nx">talkingDuck$</span><span class="p">,</span> <span class="p">{</span><span class="nx">firstName</span><span class="o">:</span> <span class="s2">"Donald"</span><span class="p">,</span> <span class="nx">color</span><span class="o">:</span> <span class="s2">"White"</span><span class="p">,</span> <span class="nx">canFly</span><span class="o">:</span> <span class="kc">false</span><span class="p">});</span>
 <span class="nx">donald</span><span class="p">.</span><span class="nx">quack</span><span class="p">();</span><span class="c1">// Donald Duck: Quack-quack! </span>
@@ -161,7 +198,7 @@ Instead of creating class (function), create prototype (object):</p>
                <span class="c1">// My name is Daffy!</span>
 </pre></div>
 
-<p>Forget about the <code>instanceof</code> operator, use JS native <code>.isPrototypeOf()</code> method instead:</p>
+<p>Forget about <strong>the <code>instanceof</code> operator</strong>, use JS native <code>.isPrototypeOf()</code> method instead:</p>
 
 <div class="highlight"><pre><span class="nx">duck$</span><span class="p">.</span><span class="nx">isPrototypeOf</span><span class="p">(</span><span class="nx">donald</span><span class="p">);</span><span class="c1">// true</span>
 </pre></div>
@@ -171,7 +208,81 @@ Instead of creating class (function), create prototype (object):</p>
 <div class="highlight"><pre><span class="nx">daffy</span> <span class="k">instanceof</span> <span class="nx">Duck</span><span class="p">;</span><span class="c1">// true</span>
 </pre></div>
 
-<hr><p>If you like this idea, plese look at <a href="http://www.github.com/quadroid/clonejs">www.github.com/quadroid/clonejs</a></p>
+<h4>
+<a name="why-not-objectcreate" class="anchor" href="#why-not-objectcreate"><span class="octicon octicon-link"></span></a>Why not Object.create?</h4>
+
+<p>1) Because its second argument isn't usable:</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">talkingDuck$</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">duck$</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">firstName</span><span class="o">:</span> <span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="s2">""</span><span class="p">,</span> <span class="nx">enumerable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">writable</span><span class="o">:</span><span class="kc">true</span><span class="p">},</span>
+    <span class="nx">lastName</span><span class="o">:</span> <span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="s2">"Duck"</span><span class="p">,</span> <span class="nx">enumerable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">writable</span><span class="o">:</span><span class="kc">true</span><span class="p">},</span>
+
+    <span class="nx">quack</span><span class="o">:</span> <span class="p">{</span><span class="nx">value</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">duck$</span><span class="p">.</span><span class="nx">quack</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"My name is "</span><span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span><span class="s2">"!"</span><span class="p">);</span>
+    <span class="p">}}</span>
+<span class="p">});</span>
+</pre></div>
+
+<p>2) It's very slow.</p>
+
+<h4>
+<a name="object-oriented-notation" class="anchor" href="#object-oriented-notation"><span class="octicon octicon-link"></span></a>Object-oriented notation</h4>
+
+<p>Create the root prototype for all your objects:</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">object$</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">clone</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ownProperties</span><span class="p">){</span>
+        <span class="nx">ownProperties</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nx">ownProperties</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>After that, you can clone it:</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">duck$</span> <span class="o">=</span> <span class="nx">object$</span><span class="p">.</span><span class="nx">clone</span><span class="p">({</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">"Duck"</span><span class="p">,</span>
+    <span class="nx">quack</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span><span class="s2">": Quack-quack!"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">donald</span> <span class="o">=</span> <span class="nx">duck$</span><span class="p">.</span><span class="nx">clone</span><span class="p">({</span><span class="nx">name</span><span class="o">:</span> <span class="s2">"Donald Duck"</span><span class="p">});</span>
+</pre></div>
+
+<p>or just copy its <code>clone</code> method to your prototype:</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">duck$</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">clone</span><span class="o">:</span> <span class="nx">object$</span><span class="p">.</span><span class="nx">clone</span><span class="p">,</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">"Duck"</span><span class="p">,</span>
+    <span class="nx">quack</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span><span class="s2">": Quack-quack!"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">donald</span> <span class="o">=</span> <span class="nx">duck$</span><span class="p">.</span><span class="nx">clone</span><span class="p">({</span><span class="nx">name</span><span class="o">:</span> <span class="s2">"Donald Duck"</span><span class="p">});</span>
+</pre></div>
+
+<h4>
+<a name="how-to-initialize-object-by-calculated-value" class="anchor" href="#how-to-initialize-object-by-calculated-value"><span class="octicon octicon-link"></span></a>How to initialize object by calculated value?</h4>
+
+<p><strong>1st way</strong> — use constructor:</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">obj$</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">base</span><span class="o">:</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="nx">constructor</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">num</span><span class="p">){</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">num</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">base</span> <span class="o">+</span> <span class="nx">num</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">obj$</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">obj$</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">obj$</span><span class="p">.</span><span class="nx">constructor</span><span class="p">(</span><span class="mi">777</span><span class="p">);</span>
+</pre></div>
+
+<p><strong>The second, more interesting way — <a href="//github.com/quadroid/clonejs#lazy-initialization">lazy initialization</a></strong></p>
+
+<hr><p>If you like the idea, plese look at the extended version of this framework <a href="http://www.github.com/quadroid/clonejs">www.github.com/quadroid/clonejs</a></p>
       </section>
 
     </div>
