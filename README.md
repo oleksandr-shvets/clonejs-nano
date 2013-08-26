@@ -13,6 +13,13 @@ The `__proto__` is a part of [upcoming ECMA Script 6⠙](http://people.mozilla.o
 Currently, all major browsers have `__proto__` support, except Internet Explorer.  
 **This** `clone` **function can be also implemented through** `Object.create` **or function-constructors (JavaScript 1.0 / IE3.0)**.  
 
+### What is the Clone?
+
+`clone` function produces new objects — Clones.  
+**Clone object — this is the lazy shallow copy**, i.e., it is actually not a copy, it's just a reference to the object,
+with one difference: if you will add/replace any of its properties, it would not affect the cloned object (prototype).  
+All JavaScript objects are clones of `Object.prototype` (except itself and objects, created by `Object.create(null)`). 
+
 ### Try the true prototype-based OOP
 
 With this framework you can easilly create and manipulate objects without constructors, instead of classic js way,
@@ -43,13 +50,6 @@ by Tarek Sherif
 It faster than any other framework, even VanillaJS! Yes, it creates class-objects faster than JS core creates class-functions!  
 See http://jsperf.com/fw-class-creation/3 and http://jsperf.com/clonejs-nano-vs-vanillajs/5
 [![CloneJS Nano vs VanillaJS](http://quadroid.github.io/clonejs-nano/frameworks-class-creation-bench.png)](http://jsperf.com/fw-class-creation/3)
-
-### What is the Clone?
-
-`clone` function produces new objects — Clones.  
-**Clone — this is the lazy shallow copy**, i.e., it is actually not a copy, it's just a reference to the object,
-with one difference: if you will add/replace any of its properties, it would not affect the cloned object (prototype).  
-All JavaScript objects are clones of `Object.prototype` (except itself and objects, created by `Object.create(null)`). 
 
 ### How to use
 
@@ -171,7 +171,7 @@ var talkingDuck$ = Object.create(duck$, {
 Create the root prototype for all your objects:
 ```javascript
 var object$ = {
-    clone: function(ownProperties){
+    $clone: function(/** object.literalOnly! */ownProperties){
         ownProperties.__proto__ = this;
         return ownProperties;
     }
@@ -179,30 +179,30 @@ var object$ = {
 ```
 After that, you can clone it:
 ```javascript
-var duck$ = object$.clone({
+var duck$ = object$.$clone({
     name: "Duck",
     quack: function(){
         console.log(this.name +": Quack-quack!");
     }
 });
 
-var donald = duck$.clone({name: "Donald Duck"});
+var donald = duck$.$clone({name: "Donald Duck"});
 ```
-or just copy its `clone` method to your prototype:
+or just copy its `$clone` method to your prototype: 
 ```javascript
 var duck$ = {
-    clone: object$.clone,
     name: "Duck",
     quack: function(){
         console.log(this.name +": Quack-quack!");
-    }
+    },
+    $clone: object$.$clone
 };
 
-var donald = duck$.clone({name: "Donald Duck"});
+var donald = duck$.$clone({name: "Donald Duck"});
 ```
 
 #### How to initialize object by calculated value?  
-**1st way** — use constructor:
+**1st, classic way** — use constructor:
 ```javascript
 var obj$ = {
     base: 1000,
