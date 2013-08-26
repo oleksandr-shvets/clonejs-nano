@@ -1,4 +1,4 @@
-clone.js Nano
+clone.js nano
 =====
 
 The [true prototype-based⠙](http://en.wikipedia.org/wiki/Prototype-based_programming) nano-framework.
@@ -54,7 +54,7 @@ All JavaScript objects are clones of `Object.prototype` (except itself and objec
 ### How to use
 
 Forget about classes (function-constructors).    
-Instead of creating class (function), create prototype (object):
+Instead of **creating class** (function), create prototype (object):
 ```javascript
 var duck$ = {// $ postfix means prototype: duck$ === Duck.prototype
     name:  "Duck",
@@ -76,7 +76,7 @@ Duck.prototype.quack = function(){
     console.log(this.name +": Quack-quack!");
 }
 ```
-Inheritance is simple (talkingDuck prototype extends duck prototype):
+**Inheritance** is simple (talkingDuck prototype extends duck prototype):
 ```javascript
 var talkingDuck$ = clone(duck$, {
     firstName: "",
@@ -129,7 +129,7 @@ Object.defineProperty(TalkingDuck.prototype, 'name', {
     }
 });
 ```
-Forget about the `new` operator, use `clone` to create instances:
+Forget about **the `new` operator**, use `clone` to create instances:
 ```javascript
 var donald = clone(talkingDuck$, {firstName: "Donald", color: "White", canFly: false});
 donald.quack();// Donald Duck: Quack-quack! 
@@ -141,7 +141,7 @@ var daffy = new TalkingDuck("Daffy", undefined, "Black", false);
 daffy.quack();// Daffy Duck: Quack-quack! 
                // My name is Daffy!
 ```
-Forget about the `instanceof` operator, use JS native `.isPrototypeOf()` method instead:
+Forget about **the `instanceof` operator**, use JS native `.isPrototypeOf()` method instead:
 ```javascript
 duck$.isPrototypeOf(donald);// true
 ```
@@ -188,7 +188,7 @@ var duck$ = object$.clone({
 
 var donald = duck$.clone({name: "Donald Duck"});
 ```
-or copy it `clone` property to your prototype:
+or just copy its `clone` method to your prototype:
 ```javascript
 var duck$ = {
     clone: object$.clone,
@@ -202,7 +202,7 @@ var donald = duck$.clone({name: "Donald Duck"});
 ```
 
 #### How to initialize object by calculated value?  
-1st way — use constructor:
+**1st way** — use constructor:
 ```javascript
 var obj$ = {
     base: 1000,
@@ -214,7 +214,7 @@ obj$.constructor.prototype = obj$;
 
 var obj = new obj$.constructor(777);
 ```
-The second, more interesting way — [lazy initialization](//github.com/quadroid/clonejs#lazy-initialization)
+**The second, more interesting way — [lazy initialization](//github.com/quadroid/clonejs#lazy-initialization)**
 
 ----
 If you like the idea, plese look at the extended version of this framework www.github.com/quadroid/clonejs
