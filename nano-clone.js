@@ -35,7 +35,10 @@
 
     function byObjectCreate(/** !Object */obj, /** !ObjLiteral */ownProperties){
         var newObj = Object.create(obj);
-        for(var key in ownProperties) newObj[key] = ownProperties[key];
+        for( var key in ownProperties ) {   
+            var pd = Object.getOwnPropertyDescriptor( ownProperties, key )  // if we use new[key]=own[key], then get/set accessors of own are lost
+            pd.set || pd.get ? Object.defineProperty( newObj, key, pd ) : newObj[key] = ownProperties[key]; // but via defineProperty they are copied
+        }
         return newObj;
     }
 
