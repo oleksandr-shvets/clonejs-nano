@@ -9,18 +9,35 @@ function clone(/** Object */proto, /** object.literalOnly! */ownProperties){
     return ownProperties;
 }
 ```
-The `__proto__` is a part of [upcoming ECMA Script 6⠙](http://people.mozilla.org/~jorendorff/es6-draft.html#sec-B.2.2.1) standart. It should be [relased by December 2013⠙](http://ecma-international.org/memento/TC39-M.htm).  
+The `__proto__` is a part of [upcoming ECMA Script 6⠙](http://people.mozilla.org/~jorendorff/es6-draft.html#sec-B.2.2.1) standart.
 Currently, all major browsers have `__proto__` support, except Internet Explorer.  
 **This** `clone` **function can be also implemented through** `Object.create` **or function-constructors (JavaScript 1.0 / IE3.0)**.  
 
 ### What is the Clone?
 
-`clone` function produces new objects — Clones.  
+`clone` function produces "new" objects — Clones.  
 **Clone object — this is the lazy shallow copy**, i.e., it is actually not a copy, it's just a reference to the object,
 with one difference: if you will add/replace any of its properties, it would not affect the cloned object (prototype).  
 All JavaScript objects are clones of `Object.prototype` (except itself and objects, created by `Object.create(null)`). 
 
-### Try the true prototype-based OOP
+
+#### Why not Object.create?
+
+1) Because its second argument isn't usable:
+```javascript
+var talkingDuck = Object.create(duck, {
+    firstName: {value:"", enumerable:true, writable:true},
+    lastName: {value:"Duck", enumerable:true, writable:true},
+
+    quack: {value: function(){
+        duck.quack.call(this);
+        console.log("My name is "+ this.name +"!");
+    }}
+});
+```
+2) It's slow.
+
+### Try the true prototype-based OOP!
 
 With this framework you can easilly create and manipulate objects without constructors, instead of classic js way,
 where you should define a constructor for every object (that you want to use as prototype), even if you didn't need it.
@@ -56,7 +73,7 @@ See http://jsperf.com/fw-class-creation/3 and http://jsperf.com/clonejs-nano-vs-
 Forget about classes (function-constructors).    
 Instead of **creating class** (function), create prototype (object):
 ```javascript
-var duck$ = {// $ postfix means prototype: duck$ === Duck.prototype
+var duck = {
     name:  "Duck",
     color: "",
     canFly: true,
@@ -78,15 +95,15 @@ Duck.prototype.quack = function(){
 ```
 **Inheritance** is simple (talkingDuck prototype extends duck prototype):
 ```javascript
-var talkingDuck$ = clone(duck$, {
+var talkingDuck = clone(duck, {
     firstName: "",
     lastName: "Duck",
     
     quack: function(){
-        duck$.quack.call(this);
+        duck.quack.call(this);
         console.log("My name is "+ this.name +"!");
     },
-    // backward compatibility with duck$ interface:
+    // backward compatibility with duck interface:
     get name(){
         return (this.firstName +" "+ this.lastName).trim();
     },
@@ -131,7 +148,7 @@ Object.defineProperty(TalkingDuck.prototype, 'name', {
 ```
 Forget about **the `new` operator**, use `clone` to create instances:
 ```javascript
-var donald = clone(talkingDuck$, {firstName: "Donald", color: "White", canFly: false});
+var donald = clone(talkingDuck, {firstName: "Donald", color: "White", canFly: false});
 donald.quack();// Donald Duck: Quack-quack! 
                // My name is Donald!
 ```
@@ -143,35 +160,19 @@ daffy.quack();// Daffy Duck: Quack-quack!
 ```
 Forget about **the `instanceof` operator**, use JS native `.isPrototypeOf()` method instead:
 ```javascript
-duck$.isPrototypeOf(donald);// true
+duck.isPrototypeOf(donald);// true
 ```
 *The classic way:*
 ```javascript
 daffy instanceof Duck;// true
 ```
 
-#### Why not Object.create?
-
-1) Because its second argument isn't usable:
-```javascript
-var talkingDuck$ = Object.create(duck$, {
-    firstName: {value:"", enumerable:true, writable:true},
-    lastName: {value:"Duck", enumerable:true, writable:true},
-
-    quack: {value: function(){
-        duck$.quack.call(this);
-        console.log("My name is "+ this.name +"!");
-    }}
-});
-```
-2) It's very slow.
-
 #### Object-oriented notation
 
 Create the root prototype for all your objects:
 ```javascript
-var object$ = {
-    $clone: function(/** object.literalOnly! */ownProperties){
+var object = {
+    clone: function(/** object.literalOnly! */ownProperties){
         ownProperties.__proto__ = this;
         return ownProperties;
     }
@@ -179,40 +180,40 @@ var object$ = {
 ```
 After that, you can clone it:
 ```javascript
-var duck$ = object$.$clone({
+var duck = object.clone({
     name: "Duck",
     quack: function(){
         console.log(this.name +": Quack-quack!");
     }
 });
 
-var donald = duck$.$clone({name: "Donald Duck"});
+var donald = duck.clone({name: "Donald Duck"});
 ```
-or just copy its `$clone` method to your prototype: 
+or just copy its `clone` method to your prototype: 
 ```javascript
-var duck$ = {
+var duck = {
     name: "Duck",
     quack: function(){
         console.log(this.name +": Quack-quack!");
     },
-    $clone: object$.$clone
+    clone: object.clone
 };
 
-var donald = duck$.$clone({name: "Donald Duck"});
+var donald = duck.clone({name: "Donald Duck"});
 ```
 
 #### How to initialize object by calculated value?  
 **1st, classic way** — use constructor:
 ```javascript
-var obj$ = {
+var obj = {
     base: 1000,
     constructor: function(num){
         this.num = this.base + num;
     }
 }
-obj$.constructor.prototype = obj$;
+obj.constructor.prototype = obj;
 
-var obj = new obj$.constructor(777);
+var obj = new obj.constructor(777);
 ```
 **The second, more interesting way — [lazy initialization](//github.com/quadroid/clonejs#lazy-initialization)**
 
