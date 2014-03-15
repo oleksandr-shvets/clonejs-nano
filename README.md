@@ -1,8 +1,8 @@
 clone.js nano
 =====
 
-The [true prototype-based⠙](http://en.wikipedia.org/wiki/Prototype-based_programming) nano-framework.
-This is the main function of the framework:
+The [true prototype-based⠙](http://en.wikipedia.org/wiki/Prototype-based_programming) 3-lines "framework".
+This is it:
 ```php
 function clone(/** Object */proto, /** object.literalOnly! */ownProperties){
     ownProperties.__proto__ = proto;
@@ -39,7 +39,7 @@ var talkingDuck = Object.create(duck, {
 
 ### Try the true prototype-based OOP!
 
-With this framework you can easilly create and manipulate objects without constructors, instead of classic js way,
+With this "framework" you can easilly create and manipulate objects without constructors, instead of classic js way,
 where you should define a constructor for every object (that you want to use as prototype), even if you didn't need it.
 It's possible to build and maintain extremely **large numbers of "classes" with comparatively little code**.
 
@@ -64,7 +64,7 @@ by Tarek Sherif
 
 ### It really fast!
 
-It faster than any other framework, even VanillaJS! Yes, it creates class-objects faster than JS core creates class-functions!  
+It faster than any other "framework", even VanillaJS! Yes, it creates class-objects faster than JS core creates class-functions!  
 See http://jsperf.com/fw-class-creation/3 and http://jsperf.com/clonejs-nano-vs-vanillajs/5
 [![CloneJS Nano vs VanillaJS](http://quadroid.github.io/clonejs-nano/frameworks-class-creation-bench.png)](http://jsperf.com/fw-class-creation/3)
 
