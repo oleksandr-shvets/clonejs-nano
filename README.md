@@ -1,8 +1,8 @@
 clone.js nano
 =====
 
-The [true prototype-based⠙](http://en.wikipedia.org/wiki/Prototype-based_programming) 3-lines "framework".
-This is it:
+The [true prototype-based⠙](http://en.wikipedia.org/wiki/Prototype-based_programming) three-lines "framework".
+The replacement for the `new` operator. This is it:
 ```php
 function clone(/** Object */proto, /** object.literalOnly! */ownProperties){
     ownProperties.__proto__ = proto;
