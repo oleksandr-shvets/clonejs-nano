@@ -15,11 +15,13 @@ Currently, all major browsers have `__proto__` support, except Internet Explorer
 
 ### What is the Clone?
 
-`clone` function produces "new" objects — Clones.  
+`clone` function produces new<sup>1</sup> objects — Clones.  
 **Clone object — this is the lazy shallow copy**, i.e., it is actually not a copy, it's just a reference to the object,
 with one difference: if you will add/replace any of its properties, it would not affect the cloned object (prototype).  
 All JavaScript objects are clones of `Object.prototype` (except itself and objects, created by `Object.create(null)`). 
 
+<sup>1</sup> To make it true, you need to follow one rule:   
+**The second argument of the `clone` function should not be a variable. Only object literal ({}) allowed.**
 
 #### Why not Object.create?
 
