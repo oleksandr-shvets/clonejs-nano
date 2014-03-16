@@ -97,7 +97,7 @@ Duck.prototype.quack = function(){
 ```
 **Inheritance** is simple (talkingDuck prototype extends duck prototype):
 ```javascript
-var talkingDuck = clone(duck, {
+var talkingDuck = lazyClone( duck, {
     firstName: "",
     lastName: "Duck",
     
@@ -205,19 +205,56 @@ var donald = duck.clone({name: "Donald Duck"});
 ```
 
 #### How to initialize object by calculated value?  
-**1st, classic way** — use constructor:
+1st, classic way:
+##### constructor
 ```javascript
 var obj = {
     base: 1000,
-    constructor: function(num){
-        this.num = this.base + num;
+    constructor: function(initBy){
+        if(initBy === undefined) initBy = 1;
+        this.num = this.base * initBy;
+        console.log("property calculated and stored");
     }
 }
 obj.constructor.prototype = obj;
 
-var obj = new obj.constructor(777);
+var instance = new obj.constructor(777);
+// property calculated and stored
+
+var num = instance.num;
+
+console.log(instance.num);
+// 1777
 ```
-**The second, more interesting way — [lazy initialization](//github.com/quadroid/clonejs#lazy-initialization)**
+The second, more interesting way:
+##### Lazy initialization
+```javascript
+var obj = {
+    base: 1000,
+    initBy: 1,
+    
+    get num(){
+        console.log("property calculated");
+        return this.num = this.base * this.initBy;
+    },
+    set num(newValue){
+        console.log("and stored");
+        Object.defineProperty(this, 'num', {value: newValue, writable:true,enumerable:true});
+    }
+}
+
+var instance = clone(obj, {initBy: 777});
+
+var num = instance.num;
+// property calculated
+// and stored
+
+console.log(instance.num);// num isn't calculated again
+// 1777
+```
+The benefits of this technic is:   
+* separation of concerns: constructor separation into small accessor methods (to prevent "long method" antipattern)
+* perfomance boost, because unused properties will be not initialized
 
 ----
 If you like the idea, plese look at the extended version of this framework www.github.com/quadroid/clonejs
